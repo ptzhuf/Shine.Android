@@ -1,12 +1,17 @@
 package org.hmzb.eat;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class HelloAndroidActivity extends Activity {
 
     private static String TAG = "GoWhereEat";
+    private Button manual;
 
     /**
      * Called when the activity is first created.
@@ -19,6 +24,20 @@ public class HelloAndroidActivity extends Activity {
         super.onCreate(savedInstanceState);
 		Log.i(TAG, "onCreate");
         setContentView(R.layout.main);
+        manual = (Button) findViewById(R.id.manualBtn);
+        manual.setOnClickListener(new OnClickListener() {
+
+            /* (non-Javadoc)
+             * @see android.view.View.OnClickListener#onClick(android.view.View)
+             */
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(HelloAndroidActivity.this, ManualActivity.class);
+                HelloAndroidActivity.this.startActivity(intent);
+            }
+            
+        });
     }
 
 }

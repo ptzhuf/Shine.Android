@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello GoWhereEat!</string>
+    <string name="hello">Welcome to GoWhereEat!</string>
     <string name="app_name">GoWhereEat</string>
+    <string name="randomBtn">random</string>
+    <string name="manualBtn">manual</string>
 </resources>
