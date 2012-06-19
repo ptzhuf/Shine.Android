@@ -5,13 +5,13 @@ package org.hmzb.eat;
 
 import java.util.ArrayList;
 
+import org.hmzb.eat.constants.GoWhereEatConstants;
 import org.hmzb.eat.model.ShopDTO;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,21 +45,19 @@ public class ManualActivity extends Activity {
         setContentView(R.layout.manual);
         resultListView = (ListView) findViewById(R.id.ressultlistView);
 
-        Uri uri = Uri.parse("content://www.hmzb.org/shop");
-
         ContentResolver cr = this.getContentResolver();
         // GoWhereEatDB goWhereEatDB = new GoWhereEatDB(this, "GoWhereEatDB.db", null, 1);
-        Cursor cursor = cr.query(uri, null, null, null, null);
-        Log.d("hmzb", String.valueOf(cursor.getCount()));
+        Cursor cursor = cr.query(GoWhereEatConstants.URI, null, null, null, null);
+        Log.d(GoWhereEatConstants.TAG, "cursor's count is " + String.valueOf(cursor.getCount()));
         // Cursor cursor = goWhereEatDB.query("select * from shop ", null);
-        Log.d("shine", "ManualActivity -> onCreate");
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Log.d("hmzb", "name is " + cursor.getString(1));
-            Log.d("hmzb", "address is " + cursor.getString(2));
-            cursor.moveToNext();
-        }
-        cursor.moveToFirst();
+        Log.d(GoWhereEatConstants.TAG, "ManualActivity -> onCreate");
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            Log.d(GoWhereEatConstants.TAG, "name is " + cursor.getString(1));
+//            Log.d(GoWhereEatConstants.TAG, "address is " + cursor.getString(2));
+//            cursor.moveToNext();
+//        }
+//        cursor.moveToFirst();
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this, R.layout.manual, cursor,
                 new String[] {"name" }, new int[] {R.id.resultTextView });
         resultListView.setAdapter(simpleCursorAdapter);
@@ -79,7 +77,7 @@ public class ManualActivity extends Activity {
                 ShopDTO shopDTO = new ShopDTO();
                 shopDTO.setName(cs.getString(1));
                 shopDTO.setAddress(cs.getString(2));
-                Log.d("hmzb", shopDTO.getName() + "'s " + "address is " + shopDTO.getAddress());
+                Log.d(GoWhereEatConstants.TAG, shopDTO.getName() + "'s " + "address is " + shopDTO.getAddress());
 
                 Intent intent = new Intent();
                 intent.setClass(ManualActivity.this, ResultActivity.class);

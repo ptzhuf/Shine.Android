@@ -3,6 +3,8 @@
  */
 package org.hmzb.eat.constants;
 
+import android.net.Uri;
+
 /**
  * 【去哪儿吃常量】类.
  * 
@@ -17,6 +19,7 @@ public final class GoWhereEatConstants {
 
     public static final String TAG = "hmzb";
     public static final String ADDRESS = "地址";
+    public static final Uri URI = Uri.parse("content://www.hmzb.org/shop");
     
     private GoWhereEatConstants() {
     }

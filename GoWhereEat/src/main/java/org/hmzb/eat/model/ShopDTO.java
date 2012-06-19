@@ -103,6 +103,11 @@ public class ShopDTO implements Parcelable {
     public ShopDTO() {
 
     }
+    
+    public ShopDTO(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
 
     /**
      * 反序列化构造函数.

@@ -3,6 +3,8 @@
  */
 package org.hmzb.eat.db;
 
+import org.hmzb.eat.constants.GoWhereEatConstants;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -42,7 +44,7 @@ public class GoWhereEatContentProvider extends ContentProvider {
      */
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Log.d("hmzb", uri.getPath());
+        Log.d(GoWhereEatConstants.TAG, uri.getPath());
         String dbPath = uri.getPath();
         StringBuilder sql = new StringBuilder();
         sql.append("select * from " + dbPath.substring(1));
