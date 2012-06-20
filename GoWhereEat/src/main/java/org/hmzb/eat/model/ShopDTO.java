@@ -18,6 +18,9 @@ import android.os.Parcelable;
  */
 public class ShopDTO implements Parcelable {
 
+    /**
+     * Ö÷¼ü.
+     */
     private int _id;
     /**
      * ÉÌÆÌÃû³Æ.
@@ -68,7 +71,7 @@ public class ShopDTO implements Parcelable {
      */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(_id);
+        dest.writeInt(getId());
         dest.writeString(getName());
         dest.writeString(getAddress());
     }
@@ -115,8 +118,22 @@ public class ShopDTO implements Parcelable {
      * @param in
      */
     private ShopDTO(Parcel in) {
-        _id = in.readInt();
+        setId(in.readInt());
         name = in.readString();
         address = in.readString();
+    }
+
+    /**
+     * @return the _id
+     */
+    public int getId() {
+        return _id;
+    }
+
+    /**
+     * @param _id the _id to set
+     */
+    public void setId(int _id) {
+        this._id = _id;
     }
 }

@@ -6,6 +6,7 @@ package org.hmzb.eat.db;
 import org.hmzb.eat.constants.GoWhereEatConstants;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
@@ -72,7 +73,13 @@ public class GoWhereEatContentProvider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO Auto-generated method stub
+        String table = uri.getPath().substring(1);
+        long id = goWhereEatDB.insert(table, values);
+        if (id > 0) {
+            // 通知所有的监听，数据发生变化.
+            getContext().getContentResolver().notifyChange(uri, null);
+            return ContentUris.withAppendedId(uri, id);
+        }
         return null;
     }
 
@@ -83,8 +90,8 @@ public class GoWhereEatContentProvider extends ContentProvider {
      */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // TODO Auto-generated method stub
-        return 0;
+        String table = uri.getPath().substring(1);
+        return goWhereEatDB.delete(table, selection, selectionArgs);
     }
 
     /*
@@ -95,8 +102,12 @@ public class GoWhereEatContentProvider extends ContentProvider {
      */
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // TODO Auto-generated method stub
-        return 0;
+        String table = uri.getPath().substring(1);
+        // TODO 使用占位符避免注入
+        if (selection == null || selection.length() == 0) {
+            selection = "_id = " + values.getAsInteger("_id");
+        }
+        return goWhereEatDB.update(table, values, selection, selectionArgs);
     }
 
 }

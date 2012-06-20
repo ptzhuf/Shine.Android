@@ -2,6 +2,10 @@
 <resources>
     <string name="hello">Welcome to GoWhereEat!</string>
     <string name="app_name">GoWhereEat</string>
-    <string name="randomBtn">random</string>
-    <string name="manualBtn">manual</string>
+    <string name="randomBtn">Random</string>
+    <string name="manualBtn">Manual</string>
+    <string name="insertBtn">Insert</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="done">Done</string>
 </resources>

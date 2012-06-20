@@ -19,7 +19,8 @@ public final class GoWhereEatConstants {
 
     public static final String TAG = "hmzb";
     public static final String ADDRESS = "µÿ÷∑";
-    public static final Uri URI = Uri.parse("content://www.hmzb.org/shop");
+    public static final Uri SHOP_URI = Uri.parse("content://www.hmzb.org/shop");
+//    public static final int SUCCESS_CODE = 1;
     
     private GoWhereEatConstants() {
     }

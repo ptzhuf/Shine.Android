@@ -26,6 +26,10 @@ public class HelloAndroidActivity extends Activity {
      * 随机按钮.
      */
     private Button randomBtn;
+    /**
+     * 插入按钮.
+     */
+    private Button insertBtn;
 
     /**
      * Called when the activity is first created.
@@ -40,6 +44,7 @@ public class HelloAndroidActivity extends Activity {
         Log.i(GoWhereEatConstants.TAG, "onCreate");
         setContentView(R.layout.main);
         setAllView();
+        final ContentResolver cr = getContentResolver();
         // 设置手动按钮的事件监听，启动ManualActivity
         manualBtn.setOnClickListener(new OnClickListener() {
             @Override
@@ -49,12 +54,12 @@ public class HelloAndroidActivity extends Activity {
                 HelloAndroidActivity.this.startActivity(intent);
             }
         });
+        // 设置随机按钮的事件监听，启动ResultActivity
         randomBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 查询所有的商铺
-                ContentResolver cr = HelloAndroidActivity.this.getContentResolver();
-                Cursor cursor = cr.query(GoWhereEatConstants.URI, null, null, null, null);
+                Cursor cursor = cr.query(GoWhereEatConstants.SHOP_URI, null, null, null, null);
                 // 获得一个随机的商铺
                 ShopDTO shopDTO = getRandomShop(cursor);
                 ArrayList<ShopDTO> shopDTOList = new ArrayList<ShopDTO>();
@@ -67,7 +72,15 @@ public class HelloAndroidActivity extends Activity {
                 intent.putParcelableArrayListExtra("shop", shopDTOList);
                 HelloAndroidActivity.this.startActivity(intent);
             }
-
+        });
+        // 设置插入按钮的事件监听，启动InsertActivity
+        insertBtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(HelloAndroidActivity.this, ShopActivity.class);
+                HelloAndroidActivity.this.startActivity(intent);
+            }
         });
     }
 
@@ -101,6 +114,7 @@ public class HelloAndroidActivity extends Activity {
     private void setAllView() {
         manualBtn = (Button) findViewById(R.id.manualBtn);
         randomBtn = (Button) findViewById(R.id.randomBtn);
+        insertBtn = (Button) findViewById(R.id.insertBtn);
     }
 
 }

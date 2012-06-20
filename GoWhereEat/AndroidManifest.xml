@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".ResultActivity" >
         </activity>
+        <activity android:name=".ShopActivity" >
+        </activity>
 
         <provider
             android:name=".db.GoWhereEatContentProvider"
